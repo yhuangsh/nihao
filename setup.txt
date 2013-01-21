@@ -1,0 +1,60 @@
+install from CentOS 6.3 minimal image
+
+useradd huang
+passwd huang
+
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+  ON_BOOT="yes"
+
+vi /etc/grub.conf 
+  kernel line add "vga=794", google for all resolutions
+
+vi /etc/sysconfig/i18n
+  change font to "Lat2-Terminus16"
+
+shutdown -r now
+
+yum install sudo
+
+vi /etc/sudoers
+  add huang right below root
+
+yum install make gcc perl kernel-devel
+
+enable Guest Addition from menu
+
+mount /dev/scd0 /mnt
+
+sh /mnt/VBoxLinuxAdditions.run --nox11
+  it may fail and prompts for missing a specific kernel-devel pacakge, just copy/paste the yum line
+  then re-run the command
+  ignore the last line about Window system driver failure
+
+yum install gpm 
+
+shutdown -r now
+  enable bi-directional copy/paste from menu
+  enable share folder
+
+yum install emacs-nox
+
+sudo curl http://binaries.erlang-solutions.com/rpm/centos/erlang_solutions.repo -o /etc/yum.repo.d/erlang_solutions.repo
+
+yum install esl-erlang
+
+yum install git
+
+ssh-keygen -t rsa -C "yong.huang.sh@gmail.com"
+
+sudo cp ./id_rsa.pub /media/sf_Drop_Box
+
+run MacOS terminal
+
+pbcopy < ~/Public/Drop\ Box/id_rsa.pub
+
+paste public key to github
+
+git config --global user.name "Yong Huang"
+git config --global user.email "yong.huang.sh@gmail.com"
+git clone git@github.com:yhuangsh/nihao.git
+
